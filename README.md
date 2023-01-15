@@ -1,7 +1,6 @@
+![](https://github.com/WilfredDube/igcse-pre-release/workflows/tests/badge.svg)
 
 ## **igcse-pre-release**
-
-![](https://github.com/WilfredDube/igcse-pre-release/tree/master/.github/workflows/badge.svg)
 
 The IGCSE Cambridge computer science syllabus (up to 2022) requires students to understand how to design a solution to a scenario-based question given a detailed problem statement and requirements (called tasks). In this series, I’m going to use the Computer Science pre-release material for the [November 2022 exam](https://papers.gceguide.com/Cambridge%20IGCSE/Computer%20Science%20(0478)/2022/0478_w22_pm_22.zip) to implement a solution to the given problem in Java.
 
