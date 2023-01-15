@@ -39,7 +39,6 @@ public class Main {
             i++;
         }
 
-        System.out.println("========================================================");
         System.out.println(carPark);
         System.out.println("========================================================");
     }
