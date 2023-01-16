@@ -59,10 +59,10 @@ public class Main {
 
         System.out.println("We only allow 4 payment methods: " +
                 "\n1. Credit/Debit card \n2. Ecocash \n3. Onemoney");
-        System.out.println("Select your favourable payment method");
-        String choice = scanner.next().toUpperCase();
+        System.out.println("Select a number corresponding to your favourable payment method");
+        int choice = scanner.nextInt();
 
-        PaymentMethod paymentMethod = PaymentMethodFactory.getInstance(PaymentType.valueOf(choice));
+        PaymentMethod paymentMethod = PaymentMethodFactory.getInstance(getPaymentChoice(choice));
 
         var newVisitor = new Visitor(name, id, address);
         Car car = new Car(license);
@@ -72,7 +72,23 @@ public class Main {
         return newVisitor;
     }
 
-    private static LocalDateTime readBookingDate(CarPark carPark) throws ParseException, InvalidDateException {
+    private static PaymentType getPaymentChoice(int choice) throws InvalidInputException {
+        String paymentMethod;
+
+        switch (choice){
+            case 1: paymentMethod = "CREDITCARD";
+                break;
+            case 2: paymentMethod = "ECOCASH";
+                break;
+            case 3: paymentMethod = "ONEMONEY";
+                break;
+            default:
+                throw new InvalidInputException("Incorrect choice");
+        }
+        return PaymentType.valueOf(paymentMethod);
+    }
+
+    private static LocalDateTime readBookingDate() throws InvalidDateException, InvalidDateFormatException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter your most favourable booking date: ");
