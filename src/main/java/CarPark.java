@@ -4,9 +4,6 @@ import exception.PaymentFailedException;
 import payment.Money;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -53,25 +50,6 @@ public class CarPark {
         }
 
         return count;
-    }
-
-    public void validDateFormat(String date) throws ParseException {
-        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        format.setLenient(false);
-        format.parse(date);
-    }
-
-    public void validateBookingDate(LocalDateTime bookingDate) throws InvalidDateException {
-        if (bookingDate.toLocalDate().isBefore(LocalDate.now()))
-            throw new InvalidDateException("Booking date: " + bookingDate
-                    + " can not be before the current date: "
-                    + LocalDate.now());
-
-        var dateAfterTwoWeeks = LocalDateTime.now().plusDays(CarPark.BOOKING_PERIOD);
-        if (bookingDate.isAfter(dateAfterTwoWeeks))
-            throw new InvalidDateException("Bookings can only be made within a "
-                    + CarPark.BOOKING_PERIOD + " day period from the current date: "
-                    + LocalDate.now());
     }
 
     private long countBookingsOn(LocalDateTime date) {

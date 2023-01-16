@@ -24,7 +24,7 @@ public class Main {
             LocalDateTime bookingDate;
 
             try {
-                bookingDate = readBookingDate(carPark);
+                bookingDate = readBookingDate();
                 newVisitor = createVisitor();
 
                 booking = new Booking(newVisitor);
@@ -81,14 +81,6 @@ public class Main {
         System.out.println("Enter your most favourable booking date: ");
         String date = scanner.nextLine();
 
-        carPark.validDateFormat(date);
-
-        bookingDate = LocalDateTime.of(
-                LocalDate.parse(date, DateTimeFormatter.ofPattern(pattern)),
-                LocalTime.now());
-
-        carPark.validateBookingDate(bookingDate);
-
-        return bookingDate;
+        return BookingDateValidator.validate(date);
     }
 }
