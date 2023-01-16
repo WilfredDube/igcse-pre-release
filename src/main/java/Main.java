@@ -3,11 +3,7 @@ import payment.PaymentMethod;
 import payment.method.PaymentMethodFactory;
 import payment.method.PaymentType;
 
-import java.text.ParseException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
