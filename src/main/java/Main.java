@@ -1,6 +1,4 @@
-import exception.InvalidDateException;
-import exception.NoParkingSpaceException;
-import exception.PaymentFailedException;
+import exception.*;
 import payment.PaymentMethod;
 import payment.method.PaymentMethodFactory;
 import payment.method.PaymentType;
@@ -30,7 +28,8 @@ public class Main {
                 booking = new Booking(newVisitor);
 
                 carPark.addBooking(booking, bookingDate);
-            } catch (NoParkingSpaceException | PaymentFailedException | IllegalArgumentException | ParseException | InvalidDateException e) {
+            } catch (NoParkingSpaceException | PaymentFailedException | IllegalArgumentException |
+                     InvalidDateException | InvalidDateFormatException | InvalidInputException e) {
                 System.err.println("Error: " + e.getMessage());
                 continue;
             }
@@ -43,7 +42,7 @@ public class Main {
         System.out.println("========================================================");
     }
 
-    private static Visitor createVisitor() throws IllegalArgumentException {
+    private static Visitor createVisitor() throws IllegalArgumentException, InvalidInputException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter your name: ");
@@ -75,8 +74,6 @@ public class Main {
 
     private static LocalDateTime readBookingDate(CarPark carPark) throws ParseException, InvalidDateException {
         Scanner scanner = new Scanner(System.in);
-        LocalDateTime bookingDate;
-        String pattern = "dd-MM-yyyy";
 
         System.out.println("Enter your most favourable booking date: ");
         String date = scanner.nextLine();
