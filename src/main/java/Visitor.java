@@ -30,7 +30,7 @@ public class Visitor {
         var payment = paymentMethod.mkPayment(booking.getBookingID(), booking.getBookingPrice());
 
         if (payment.isEmpty())
-            throw new PaymentFailedException("payment.Payment process failed. Please try again later.");
+            throw new PaymentFailedException("Payment process failed. Please try again later.");
 
         booking.setPayment(payment.get());
     }
