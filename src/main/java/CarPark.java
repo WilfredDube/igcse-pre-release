@@ -11,8 +11,8 @@ import java.util.List;
 
 public class CarPark {
     public static final int PARKING_SPACES = 2;
-    public static final float PRICE_PER_PARKING_SPACE = 3.0f;
     public static final String CURRENCY_CODE = "USD";
+    public static final Money PRICE_PER_PARKING_SPACE = new Money(Currency.getInstance(CURRENCY_CODE), BigDecimal.valueOf(3.0f));
     public static final int BOOKING_PERIOD = 14;
     public static final int TOTAL_BOOKINGS = BOOKING_PERIOD * PARKING_SPACES;
 
@@ -28,8 +28,7 @@ public class CarPark {
 
         booking.setBookingDate(bookingDate);
 
-        Money parkingCost = new Money(Currency.getInstance(CURRENCY_CODE), BigDecimal.valueOf(PRICE_PER_PARKING_SPACE));
-        booking.setParkingSpace(new ParkingSpace((int) count + 1, parkingCost));
+        booking.setParkingSpace(new ParkingSpace((int) count + 1, PRICE_PER_PARKING_SPACE));
 
         booking.pay();
 
