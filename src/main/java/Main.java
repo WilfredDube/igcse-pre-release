@@ -53,6 +53,9 @@ public class Main {
         System.out.println("Enter your licence number: ");
         String license = scanner.nextLine();
 
+        if (name.isEmpty() || id.isEmpty() || address.isEmpty() || license.isEmpty())
+            throw new InvalidInputException("Visitor name, id, license or address must not be empty.");
+
         System.out.println("We only allow 4 payment methods: " +
                 "\n1. Credit/Debit card \n2. Ecocash \n3. Onemoney");
         System.out.println("Select a number corresponding to your favourable payment method");
