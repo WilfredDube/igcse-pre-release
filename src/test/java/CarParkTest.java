@@ -25,7 +25,7 @@ class CarParkTest {
     }
 
     @Test
-    @DisplayName("Adds first booking given that there are parking spaces on the selected date")
+    @DisplayName("Given that there are parking spaces available on the selected date add first booking")
     void addBooking() {
         Booking booking = new Booking(newVisitor);
         assertDoesNotThrow(() -> carPark.addBooking(booking, LocalDateTime.now()));
@@ -33,7 +33,7 @@ class CarParkTest {
     }
 
     @Test
-    @DisplayName("Throws exception when all parking spaces are already booked for the entire booking period.")
+    @DisplayName("Given that all parking spaces are already booked for the entire booking period throws a NoParkingSpaceException exception.")
     void throwsExceptionWhenAllParkingSpacesHaveBeenBooked() {
         var bookedDate = LocalDateTime.of(LocalDate.now().plusDays(2), LocalTime.now());
         LocalDate upComingDate = LocalDate.now().plusDays(15);
@@ -46,6 +46,7 @@ class CarParkTest {
                 upComingDate + "?", thrown.getMessage());
     }
 
+    // Fills up all the parking spaces on each day of the entire booking period.
     private void fillAllAvailableBookings() {
         for (int i = 0; i < CarPark.BOOKING_PERIOD; i++) {
             var bookedDate = LocalDateTime.of(LocalDate.now().plusDays(i), LocalTime.now());
@@ -57,7 +58,7 @@ class CarParkTest {
     }
 
     @Test
-    @DisplayName("Has no parking space on the selected date.")
+    @DisplayName("Given that there are no parking spaces on the selected date throw a NoParkingSpaceException exception.")
     void throwsExceptionGivenThatNoParkingSpacesAreAvailableOnASelectedDate() {
         var bookedDate = LocalDateTime.of(LocalDate.now().plusDays(2), LocalTime.now());
 
@@ -73,7 +74,7 @@ class CarParkTest {
     }
 
     @Test
-    @DisplayName("Has parking space but payment fails")
+    @DisplayName("Given that there are parking spaces on the selected date but payment fails throw a PaymentFailedException exception.")
     void hasParkingSpacesOnASelectedDateButPaymentFails() {
         var bookedDate = LocalDateTime.of(LocalDate.now().plusDays(2), LocalTime.now());
 
