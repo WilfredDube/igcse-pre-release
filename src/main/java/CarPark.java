@@ -37,7 +37,7 @@ public class CarPark {
 
     private long checkAvailableParkingSpace(LocalDateTime bookingDate) {
         if (this.bookings.size() == TOTAL_BOOKINGS) {
-            throw new NoParkingSpaceException("No free parking space for the next " + BOOKING_PERIOD + " days." +
+            throw new NoParkingSpaceException("No free parking space for the next " + BOOKING_PERIOD + " days. " +
                     "Should we schedule the booking on: " + LocalDate.now().plusDays(BOOKING_PERIOD + 1) +
                     "?");
         }
